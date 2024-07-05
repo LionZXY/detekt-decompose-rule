@@ -1,17 +1,18 @@
 plugins {
-    kotlin("jvm") version "2.0.0"
-    `maven-publish`
+    alias(libs.plugins.kotlin.jvm)
+    id("maven-publish")
 }
 
-group = "com.github.lionzxy.detektdecomposerule"
+group = "uk.kulikov.detekt.decompose"
 version = "1.0-SNAPSHOT"
 
 dependencies {
-    compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.23.6")
+    compileOnly(libs.decompose)
+    compileOnly(libs.detekt.api)
 
-    testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.23.6")
-    testImplementation("io.kotest:kotest-assertions-core:5.9.1")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
+    testImplementation(libs.detekt.test)
+    testImplementation(libs.kotest)
+    testImplementation(libs.jupiter)
 }
 
 kotlin {

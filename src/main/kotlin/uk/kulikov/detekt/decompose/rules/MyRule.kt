@@ -1,4 +1,4 @@
-package com.github.lionzxy.detektdecomposerule
+package uk.kulikov.detekt.decompose.rules
 
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config

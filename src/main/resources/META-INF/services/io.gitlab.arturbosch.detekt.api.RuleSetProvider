@@ -1,1 +1,1 @@
-com.github.lionzxy.detektdecomposerule.MyRuleSetProvider
+uk.kulikov.detekt.decompose.DetektDecomposeSetProvider
