@@ -7,9 +7,9 @@ group = "uk.kulikov.detekt.decompose"
 version = "1.0-SNAPSHOT"
 
 dependencies {
-    compileOnly(libs.decompose)
     compileOnly(libs.detekt.api)
 
+    testImplementation(libs.decompose)
     testImplementation(libs.detekt.test)
     testImplementation(libs.kotest)
     testImplementation(libs.jupiter)
