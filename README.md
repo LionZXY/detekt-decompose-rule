@@ -1,32 +1,29 @@
-# detekt custom rule template
+# Detekt Decompose Ruleset
+[![Build Action](https://github.com/LionZXY/detekt-decompose-rule/actions/workflows/push.yml/badge.svg)](https://github.com/LionZXY/detekt-decompose-rule/actions/workflows/push.yml) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/uk.kulikov.detekt.decompose/decompose-detekt-rules/badge.svg)](https://maven-badges.herokuapp.com/maven-central/uk.kulikov.detekt.decompose/decompose-detekt-rules) [![Apache License](http://img.shields.io/badge/license-Apache%20License%202.0-lightgrey.svg)](http://choosealicense.com/licenses/apache-2.0/)
 
-This repository is a template. You can use it to generate your own repository to write and share your custom rules.
+[Decompose](https://github.com/arkivanov/Decompose) is the best and safest navigation framework I know. However, some fundamental and architectural decisions may not be obvious to newcomers to the project.
+In order to avoid typical mistakes when using Decompose and this Detekt plugin was created
 
 ## How to use it
 
-1. Create a new repository using this one as a template. [Click here][create_template]
-2. Edit MyRule to fit your use case
-3. Share your rule! You can upload your rule to [Maven Central][maven_central] if you want. If you don't want to do all
-   the steps that Maven Central requires you can just share your rule using [jitpack][jitpack].
-4. Extra: you can remove all this README and explain what your rule does and how to configure it.
+Connect the detekt plugin the same way you do with the others:
 
-## Documentation
+```kotlin
+detektPlugins("uk.kulikov.detekt.decompose:decompose-detekt-rules:0.4")
+```
 
-You can find the documentation about how to write [custom rules here][custom_rule_documentation].
+## Rules
 
-## Note
+### PushForbiddenRule
 
-- Remember that, by default, all rules are disabled. To configure your rules edit the file in
-`src/main/resources/config/config.yml`.
-- Once you have your rules ready you can publish them on the [detekt's marketplace][detekt_marketplace] to improve the discoverability. To do so create a PR editing [this file][detekt_marketplace_edit].
+Push is a very dangerous operation in Decompose - if the config matches, the whole application will crash. This rule was created to avoid that.
 
-[create_template]: https://github.com/detekt/detekt-custom-rule-template/generate
+The config for this rule looks like this:
+```yaml
+DecomposeRule:
+  PushForbiddenRule:
+    active: true
+    checkImport: true
+```
 
-[maven_central]: https://search.maven.org/
-
-[custom_rule_documentation]: https://detekt.github.io/detekt/extensions.html
-
-[jitpack]: https://jitpack.io/
-
-[detekt_marketplace]: https://detekt.dev/marketplace
-[detekt_marketplace_edit]: https://github.com/detekt/detekt/blob/main/website/src/data/marketplace.js
+`checkImport` is needed to track a rule without enabling [Detekt Type Resolution](https://detekt.dev/docs/gettingstarted/type-resolution). If you have TypeResolution enabled, you don't need this flag and can turn it off
