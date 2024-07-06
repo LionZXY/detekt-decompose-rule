@@ -14,7 +14,9 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily
+      day: "saturday"
+      interval: "weekly"
+      time: "03:00"
     groups:
       dependencies:
         patterns:
