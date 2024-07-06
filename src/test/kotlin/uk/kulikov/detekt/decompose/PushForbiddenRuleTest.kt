@@ -16,7 +16,6 @@ internal class PushForbiddenRuleTest(private val env: KotlinCoreEnvironment) {
         val code = """
         import com.arkivanov.decompose.router.stack.push
         import com.arkivanov.decompose.router.stack.StackNavigation
-        import com.arkivanov.decompose.router.stack.push
         
         fun test() {
             val navigation = StackNavigation<String>()
@@ -24,13 +23,12 @@ internal class PushForbiddenRuleTest(private val env: KotlinCoreEnvironment) {
         }
         """
         val findings = PushForbiddenRule(Config.empty).compileAndLintWithContext(env, code)
-        findings shouldHaveSize 1
+        findings shouldHaveSize 2
     }
 
     @Test
     fun `doesn't reports pushToFront decompose use`() {
         val code = """
-        import com.arkivanov.decompose.router.stack.push
         import com.arkivanov.decompose.router.stack.StackNavigation
         import com.arkivanov.decompose.router.stack.pushToFront
         
