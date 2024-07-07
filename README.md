@@ -24,6 +24,16 @@ DecomposeRule:
   PushForbiddenRule:
     active: true
     checkImport: true
+    replaceTo: 'pushToFront()'
 ```
 
-`checkImport` is needed to track a rule without enabling [Detekt Type Resolution](https://detekt.dev/docs/gettingstarted/type-resolution). If you have TypeResolution enabled, you don't need this flag and can turn it off
+1) `checkImport` is needed to track a rule without enabling [Detekt Type Resolution](https://detekt.dev/docs/gettingstarted/type-resolution). If you have TypeResolution enabled, you don't need this flag and can turn it off. 
+2) `replaceTo` - is the default way of assigning a replacement. The rules of what `push()` should be replaced with differ from project to project. 
+   - The default is `replaceTo` is `null` and gives this error:
+    ```plaintext
+    The push() method can cause crashes in runtime. Use safer ways to add a screen to the stack. More information: https://arkivanov.github.io/Decompose/navigation/stack/navigation/#stacknavigator-extension-functions
+    ```
+   - If `replaceTo` is not empty (for example `pushToFront()`), the output is:
+    ```plaintext
+    Use pushToFront() instead of push() to avoid runtime crashes
+    ```

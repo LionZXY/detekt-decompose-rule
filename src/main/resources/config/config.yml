@@ -2,3 +2,4 @@ DecomposeRule:
   PushForbiddenRule:
     active: true
     checkImport: true
+    replaceTo: 'pushToFront()'

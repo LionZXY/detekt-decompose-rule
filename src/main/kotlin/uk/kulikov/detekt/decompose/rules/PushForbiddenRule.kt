@@ -10,10 +10,11 @@ import org.jetbrains.kotlin.resolve.ImportPath
 class PushForbiddenRule(config: Config) : Rule(
     config
 ) {
+    private val description = getDescription(config)
     override val issue = Issue(
         "PushForbiddenRule",
         Severity.CodeSmell,
-        "Use pushToFront() instead of push() to avoid runtime crashes",
+        description,
         Debt.FIVE_MINS,
     )
     private val checkImport = config.valueOrDefault("checkImport", true)
@@ -38,6 +39,15 @@ class PushForbiddenRule(config: Config) : Rule(
             }
         } catch (e: Throwable) {
             throw e
+        }
+    }
+
+    private fun getDescription(config: Config): String {
+        val replaceTo = config.valueOrNull<String>("replaceTo")
+        return if (replaceTo == null) {
+            "The push() method can cause crashes in runtime. Use safer ways to add a screen to the stack. More information: https://arkivanov.github.io/Decompose/navigation/stack/navigation/#stacknavigator-extension-functions"
+        } else {
+            "Use $replaceTo instead of push() to avoid runtime crashes"
         }
     }
 
