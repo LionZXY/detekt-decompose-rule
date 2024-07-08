@@ -33,17 +33,18 @@ class PushForbiddenRule(config: Config) : Rule(
 
     override fun visitCallExpression(expression: KtCallExpression) {
         super.visitCallExpression(expression)
-        try {
-            if (expression.isCalling(requireFunctionFqName, bindingContext)) {
-                report(CodeSmell(issue, Entity.from(expression), issue.description))
-            }
-        } catch (e: Throwable) {
-            throw e
+
+        if (expression.isCalling(requireFunctionFqName, bindingContext)) {
+            report(CodeSmell(issue, Entity.from(expression), issue.description))
         }
     }
 
     private fun getDescription(config: Config): String {
-        val replaceTo = config.valueOrNull<String>("replaceTo")
+        var replaceTo = config.valueOrNull<String>("replaceTo")
+        if (replaceTo == null) {
+            replaceTo = config.subConfig("PushForbiddenRule")
+                .valueOrNull("replaceTo")
+        }
         return if (replaceTo == null) {
             "The push() method can cause crashes in runtime. Use safer ways to add a screen to the stack. More information: https://arkivanov.github.io/Decompose/navigation/stack/navigation/#stacknavigator-extension-functions"
         } else {
