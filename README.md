@@ -9,7 +9,7 @@ In order to avoid typical mistakes when using Decompose and this Detekt plugin w
 Connect the detekt plugin the same way you do with the others:
 
 ```kotlin
-detektPlugins("uk.kulikov.detekt.decompose:decompose-detekt-rules:0.4")
+detektPlugins("uk.kulikov.detekt.decompose:decompose-detekt-rules:1.0.1")
 ```
 
 ## Rules
