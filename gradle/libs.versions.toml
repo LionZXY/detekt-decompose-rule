@@ -1,8 +1,8 @@
 [versions]
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 detekt = "1.23.6"
 kotest = "5.9.1"
-jupiter = "5.10.3"
+jupiter = "5.11.0"
 decompose = "3.1.0"
 jreleaser = "1.13.1"
 
