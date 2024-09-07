@@ -1,10 +1,10 @@
 [versions]
-kotlin = "2.0.10"
+kotlin = "2.0.20"
 detekt = "1.23.6"
 kotest = "5.9.1"
 jupiter = "5.11.0"
 decompose = "3.1.0"
-jreleaser = "1.13.1"
+jreleaser = "1.14.0"
 
 [libraries]
 detekt-api = { module = "io.gitlab.arturbosch.detekt:detekt-api", version.ref = "detekt" }
