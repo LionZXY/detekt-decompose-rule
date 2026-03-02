@@ -4,3 +4,5 @@
 /.gradle
 /build
 /local.properties
+.claude
+.kotlin
