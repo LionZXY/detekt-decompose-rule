@@ -11,9 +11,11 @@ version = properties["VERSION_NAME"].toString()
 
 dependencies {
     compileOnly(libs.detekt.api)
+    compileOnly(libs.detekt.psi.utils)
 
     testImplementation(libs.decompose)
     testImplementation(libs.detekt.test)
+    testImplementation(libs.detekt.test.junit)
     testImplementation(libs.kotest)
     testImplementation(libs.jupiter)
 }
@@ -24,7 +26,7 @@ java {
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(17)
 }
 
 tasks.withType<Test>().configureEach {
